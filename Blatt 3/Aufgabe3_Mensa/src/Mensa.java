@@ -3,22 +3,36 @@ import java.util.Scanner;
 public class Mensa {
 
 	public static void main(String[] args) {
-		int balance, expense, newbalance = 0;
+		double balance = 0, expense;
 
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("Gib dein Guthaben ein: ");
-		balance = scanner.nextInt();
+		while (balance <= 0) {
+			System.out.println("Gib dein Guthaben ein: ");
+			while (!scanner.hasNextDouble()) {
+				System.out.println("Das war falsch. ");
+				System.out.println("Gib nochmal ein: ");
+				scanner.next();
+			}
+			balance = scanner.nextDouble();
+			if (balance <= 0) {
+				System.out.println("Sie haben kein Guthaben mehr.");
+			}
+		}
 
-		System.out.println("Gib deine Ausgabe ein: ");
+		System.out.println("Gib deine Ausgabe ein oder einen Buchstaben um abzubrechen: ");
 
-		while (scanner.hasNextInt() && balance > 0) {
+		while (balance > 0 && scanner.hasNextDouble()) {
 
-			System.out.println("Gib deine Ausgabe ein: ");
-			expense = scanner.nextInt();
-			newbalance = balance - expense;
+			expense = scanner.nextDouble();
+			balance = balance - expense;
 
-			System.out.println("Dein verbleibendes Guthaben ist: " + newbalance);
+			if (balance < 0) {
+				System.out.println("Du hast kein Guthaben mehr");
+			} else {
+				System.out.println("Dein verbleibendes Guthaben ist: " + balance);
+				System.out.println("Gib deine Ausgabe ein: ");
+			}
 		}
 
 	}
