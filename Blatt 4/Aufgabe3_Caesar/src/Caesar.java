@@ -24,8 +24,14 @@ public class Caesar {
 		}
 		number = scanner.nextInt();
 
-		System.out.println(word);
-		System.out.println(number);
+		int length = word.length();
+		int counter = 0;
+
+		while (counter < length) {
+			counter++;
+		}
+
+		System.out.println("Das verschlüsselte Wort ist:" + word);
 	}
 
 }

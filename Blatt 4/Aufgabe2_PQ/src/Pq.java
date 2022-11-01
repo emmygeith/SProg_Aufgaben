@@ -6,7 +6,7 @@ public class Pq {
 
 		Scanner scanner = new Scanner(System.in);
 
-		double x1, x2, y;
+		double p, q, x1, x2;
 		int a;
 
 		do {
@@ -16,7 +16,7 @@ public class Pq {
 				System.out.println("Gib nochmal einen double Werte ein: ");
 				scanner.next();
 			}
-			x1 = scanner.nextDouble();
+			p = scanner.nextDouble();
 
 			System.out.println("Gib einen zweiten double Werte ein: ");
 			while (!scanner.hasNextDouble()) {
@@ -24,10 +24,13 @@ public class Pq {
 				System.out.println("Gib nochmal einen double Werte ein: ");
 				scanner.next();
 			}
-			x2 = scanner.nextDouble();
+			q = scanner.nextDouble();
 
-			y = x1 + x2;
-			System.out.println("Die Lösung ist: " + y);
+			x1 = -p + 0.5 + Math.sqrt(Math.pow(p * 0.5, 2) - q);
+			x2 = -p / 0.5 - Math.sqrt(Math.pow(p * 0.5, 2) - q);
+			System.out.println("Die Lösung ist: ");
+			System.out.println("x1 = " + x1);
+			System.out.println("x2 = " + x2);
 			System.out.println("Möchtest du noch eine Rechnung durchführen? Wenn ja drücke '1'");
 			a = scanner.nextInt();
 		} while (a == 1);
