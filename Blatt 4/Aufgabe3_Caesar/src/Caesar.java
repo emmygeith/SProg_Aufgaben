@@ -28,7 +28,7 @@ public class Caesar {
 		int counter = 0;
 
 		while (counter < length) {
-			counter++;
+
 		}
 
 		System.out.println("Das verschlüsselte Wort ist:" + word);
