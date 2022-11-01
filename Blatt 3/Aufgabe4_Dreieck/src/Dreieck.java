@@ -15,7 +15,7 @@ public class Dreieck {
 			scanner.next();
 		}
 		a = scanner.nextInt();
-		a = Math.abs(a); // negative Zahlen abfangen
+		a = Math.abs(a); // Betrag, negative Zahlen abfangen
 
 		System.out.println("Gib die zweite Kantenlaenge ein: ");
 		while (!scanner.hasNextInt()) {
