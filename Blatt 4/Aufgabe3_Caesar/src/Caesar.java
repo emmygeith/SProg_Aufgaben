@@ -6,15 +6,16 @@ public class Caesar {
 
 		Scanner scanner = new Scanner(System.in);
 
-		String word;
+		String word, encryptedWord = "";
 		int number;
+		char wordChar;
 
 		System.out.println("Gib ein Wort ein: ");
 		/*
 		 * while (!scanner.hasNextString()) { System.out.println("Das war falsch. ");
 		 * System.out.println("Gib nochmal ein Wort ein"); scanner.next(); }
 		 */
-		word = scanner.next();
+		word = scanner.nextLine();
 
 		System.out.println("Gib eine Ganzzahl ein: ");
 		while (!scanner.hasNextInt()) {
@@ -24,14 +25,33 @@ public class Caesar {
 		}
 		number = scanner.nextInt();
 
-		int length = word.length();
-		int counter = 0;
+		int i = 0;
 
-		while (counter < length) {
+		while (i < word.length()) {
+			wordChar = word.charAt(i);
+			i++;
+			if (wordChar >= 'a' && wordChar <= 'z') {
+				wordChar = (char) (wordChar + number);
+
+				if (wordChar > 'z') {
+					wordChar = (char) (wordChar - 'z' + 'a' - 1);
+				}
+				encryptedWord += wordChar;
+
+			} else if (wordChar >= 'A' && wordChar <= 'Z') {
+				wordChar = (char) (wordChar + number);
+
+				if (wordChar > 'Z') {
+					wordChar = (char) (wordChar - 'Z' + 'A' - 1);
+				}
+				encryptedWord += wordChar;
+			} else {
+				encryptedWord += wordChar;
+			}
 
 		}
 
-		System.out.println("Das verschlüsselte Wort ist:" + word);
+		System.out.println("Das verschlüsselte Wort ist: " + encryptedWord);
 	}
 
 }
