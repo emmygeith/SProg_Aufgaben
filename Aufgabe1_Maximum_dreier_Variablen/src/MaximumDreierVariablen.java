@@ -15,8 +15,9 @@ public class MaximumDreierVariablen {
 		c = scanner.nextInt();
 
 		if (a > b) {
-			if (a > c)
+			if (a > c) {
 				System.out.println("Der maximale Wert ist: " + a);
+			}
 		} else {
 			if (b > c) {
 				System.out.println("Der maximale Wert ist: " + b);

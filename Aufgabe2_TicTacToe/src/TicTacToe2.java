@@ -26,25 +26,6 @@ public class TicTacToe2 {
 		System.out.println("Spiel vorbei.");
 	}
 
-	public static int getInput(String[] field, String message) {
-		int position = 0;
-		boolean isFieldFree = false;
-		do {
-			System.out.println(message);
-			position = readInt();
-			isFieldFree = isLegalIndex(field, position - 1);
-			if (!isFieldFree) {
-				System.out.println("Illegale Eingabe.");
-			}
-		} while (!isFieldFree);
-		return position;
-	}
-
-	public static void printField(String[] field) {
-		printArray(field);
-		System.out.println();
-	}
-
 	public static void printArray(String a[]) {
 		for (int i = 0; i < 3; i++) {
 			System.out.print(a[i] + " & ");
@@ -61,30 +42,23 @@ public class TicTacToe2 {
 		System.out.println();
 	}
 
-	public static void markPosition(String[] field, int position, String mark) {
-		if (isFieldFree(field, position)) {
-			field[position - 1] = mark;
-		} else {
-			System.out.println("Markierung nicht möglich. Feld ist schon belegt.");
-		}
-
+	public static void printField(String[] field) {
+		printArray(field);
+		System.out.println();
 	}
 
-	/**
-	 * @param field
-	 * @param position
-	 * @return returns true if fild at position is free. position must be 1-9
-	 */
-	public static boolean isFieldFree(String[] field, int position) {
-		if (!isLegalIndex(field, position - 1)) {
-			return false;
-		}
-		String currentValue = field[position - 1];
-		return !currentValue.equals("X") && !currentValue.equals("O");
-	}
-
-	public static boolean isLegalIndex(String[] field, int index) {
-		return index < field.length && index >= 0;
+	public static int getInput(String[] field, String message) {
+		int position = 0;
+		boolean isFieldFree = false;
+		do {
+			System.out.println(message);
+			position = readInt();
+			isFieldFree = isLegalIndex(field, position - 1);
+			if (!isFieldFree) {
+				System.out.println("Illegale Eingabe.");
+			}
+		} while (!isFieldFree);
+		return position;
 	}
 
 	public static int readInt() {
@@ -96,6 +70,36 @@ public class TicTacToe2 {
 		return s.nextInt();
 	}
 
+	/**
+	 * @param field
+	 * @param position
+	 * @return returns true wenn das Feld an "position" frei ist. position muss
+	 *         zwischen 1-9 sein
+	 */
+	public static boolean isFieldFree(String[] field, int position) {
+		if (!isLegalIndex(field, position - 1)) {
+			return false;
+		}
+		String currentValue = field[position - 1];
+		return !currentValue.equals("X") && !currentValue.equals("O");
+	}
+
+	// prüft ob der Index [i] legal ist (also zwischen 0 und 8)
+	public static boolean isLegalIndex(String[] field, int index) {
+		return index < field.length && index >= 0;
+	}
+
+	// Kann nur Position markieren wenn boolean "isFieldFree" true ist und boolean
+	// "isLegalIndex" true ist
+	public static void markPosition(String[] field, int position, String mark) {
+		if (isFieldFree(field, position)) {
+			field[position - 1] = mark;
+		} else {
+			System.out.println("Markierung nicht möglich. Feld ist schon belegt.");
+		}
+	}
+
+	// prüft ob das Spielfeld voll ist (Bedingung für do while Schleife s.o.)
 	public static boolean isArrayFull(String[] field) {
 		for (int i = 0; i < field.length; i++) {
 			if (isFieldFree(field, i + 1)) {
